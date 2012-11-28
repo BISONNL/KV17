@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Copyright:	Dit document is eigendom van Platform BISON onder de Stichting Connekt,-->
+<!--            en wordt gepubliceerd onder de Creative Commons Licentie by-nd/3.0/nl, -->
+<!--            zie http://creativecommons.org/licences/by-nd/3.0/nl                   -->
+<!-- Opmerking: XSD is gebaseerd op TMI8 koppelvlak 17 versie 8.1.0.0 release          -->
+<!-- Versie:   1.0 (release)   (25-11-2009)                                            -->
+<!--           														                                             -->
+<!-- Historie:                                                                         -->
+<!--          0.1: initiele versie 																										 -->
+<!--          0.2: op basis van concept (c)												  									 -->
+<!--          0.3: op basis van concept (d)												  									 -->
+<!--          0.4: op basis van concept (e)	(including support for ADD)								 -->
+<!--          1.0: op basis van v8.1.0.0 																							 -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tmi8="http://bison.connekt.nl/tmi8/kv17/msg" xmlns:tmi8c="http://bison.connekt.nl/tmi8/kv17/core" targetNamespace="http://bison.connekt.nl/tmi8/kv17/msg" elementFormDefault="qualified">
+	<xs:import namespace="http://bison.connekt.nl/tmi8/kv17/core" schemaLocation="kv17-core.xsd"/>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- TMI KV17 messages                                                                 -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xs:element name="VV_TM_PUSH">
+		<xs:annotation>
+			<xs:documentation>Bevat door de integrator te verwerken mutaties op de dagplanning</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:group ref="tmi8:MessageProperties"/>
+				<xs:element name="KV17cvlinfo" type="tmi8:KV17cvlinfoType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="VV_TM_REQ">
+		<xs:annotation>
+			<xs:documentation>Vraagt de leverancier mutaties opnieuw te versturen.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:group ref="tmi8:MessageProperties"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="VV_TM_RES">
+		<xs:annotation>
+			<xs:documentation>Geeft aan hoe de aan de integrator aangeboden documenten verwerkt zijn</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:group ref="tmi8:MessageProperties" minOccurs="0"/>
+				<xs:element name="ResponseCode" type="tmi8:ResponseCodeType"/>
+				<xs:element name="ResponseError" type="tmi8:ResponseErrorType" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Dossiers: KV17cvlinfo                                                             -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xs:complexType name="KV17cvlinfoType">
+		<xs:sequence>
+			<xs:element name="KV17JOURNEY" type="tmi8:KV17journeyType"/>
+			<xs:element name="KV17MUTATEJOURNEY" type="tmi8:KV17mutatejourneyType" minOccurs="0"/>
+			<xs:element name="KV17MUTATEJOURNEYSTOP" type="tmi8:KV17mutatejourneystopType" minOccurs="0"/>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="tmi8c:delimiter"/>
+				<xs:any namespace="##targetNamespace ##local" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KV17journeyType">
+		<xs:sequence>
+			<xs:element name="dataownercode" type="tmi8:dataownercodeType"/>
+			<xs:element name="lineplanningnumber" type="tmi8:lineplanningnumberType"/>
+			<xs:element name="operatingday" type="tmi8:tmidateType"/>
+			<xs:element name="journeynumber" type="tmi8:journeynumberType"/>
+			<xs:element name="reinforcementnumber" type="tmi8:reinforcementnumberType"/>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="tmi8c:delimiter"/>
+				<xs:any namespace="##targetNamespace ##local" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KV17mutatejourneyType">
+		<xs:annotation>
+			<xs:documentation>ADD is a RESERVED OPERATION</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="timestamp" type="tmi8:tmidatetimeType"/>
+			<xs:choice>
+				<xs:element name="CANCEL" type="tmi8:CANCELType" minOccurs="0"/>
+				<xs:element name="RECOVER" type="tmi8:RECOVERType" minOccurs="0"/>
+				<xs:element name="ADD" type="tmi8:ADDType" minOccurs="0"/>
+			</xs:choice>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="tmi8c:delimiter"/>
+				<xs:any namespace="##targetNamespace ##local" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KV17mutatejourneystopType">
+		<xs:sequence>
+			<xs:element name="timestamp" type="tmi8:tmidatetimeType"/>
+			<xs:choice>
+				<xs:sequence minOccurs="0" maxOccurs="unbounded">
+					<xs:element name="SHORTEN" type="tmi8:SHORTENType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="CHANGEPASSTIMES" type="tmi8:CHANGEPASSTIMESType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="CHANGEDESTINATION" type="tmi8:CHANGEDESTINATIONType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="LAG" type="tmi8:LAGType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="MUTATIONMESSAGE" type="tmi8:MUTATIONMESSAGEType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:choice>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="tmi8c:delimiter"/>
+				<xs:any namespace="##targetNamespace ##local" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- CVL Info entities                                                          -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xs:complexType name="CANCELType">
+		<xs:sequence>
+			<xs:sequence minOccurs="0">
+				<xs:element name="reasontype" type="tmi8:sirisxcategoryType"/>
+				<xs:element name="subreasontype" type="tmi8:sirisxcodeType"/>
+			</xs:sequence>
+			<xs:element name="reasoncontent" type="tmi8:contentType" minOccurs="0"/>
+			<xs:sequence minOccurs="0">
+				<xs:element name="advicetype" type="tmi8:sirisxcategoryType"/>
+				<xs:element name="subadvicetype" type="tmi8:sirisxcodeType"/>
+			</xs:sequence>
+			<xs:element name="advicecontent" type="tmi8:contentType" minOccurs="0"/>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="tmi8c:delimiter"/>
+				<xs:any namespace="##targetNamespace ##local" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SHORTENType">
+		<xs:sequence>
+			<xs:element name="userstopcode" type="tmi8:codeType"/>
+			<xs:element name="passagesequencenumber" type="tmi8:passagesequencenumberType"/>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="tmi8c:delimiter"/>
+				<xs:any namespace="##targetNamespace ##local" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RECOVERType">
+		<xs:sequence>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="tmi8c:delimiter"/>
+				<xs:any namespace="##targetNamespace ##local" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ADDType">
+		<xs:annotation>
+			<xs:documentation>ADD is a RESERVED OPERATION</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<!-- Mogelijke oplossing voor CVL rit toevoegen ingreep. NIET GEBRUIKEN !!!
+			<xs:choice>
+				<xs:element name="insertfromscratch" type="tmi8:tmibooleanType"/>
+				<xs:element name="COPYFROMJOURNEY" type="tmi8:KV17journeyType"/>
+			</xs:choice>
+-->
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="tmi8c:delimiter"/>
+				<xs:any namespace="##targetNamespace ##local" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LAGType">
+		<xs:sequence>
+			<xs:element name="userstopcode" type="tmi8:codeType"/>
+			<xs:element name="passagesequencenumber" type="tmi8:passagesequencenumberType"/>
+			<xs:element name="lagtime" type="tmi8:lagtimeType"/>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="tmi8c:delimiter"/>
+				<xs:any namespace="##targetNamespace ##local" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CHANGEPASSTIMESType">
+		<xs:sequence>
+			<xs:element name="userstopcode" type="tmi8:codeType"/>
+			<xs:element name="passagesequencenumber" type="tmi8:passagesequencenumberType"/>
+			<xs:element name="targetarrivaltime" type="tmi8:tmitimeType"/>
+			<xs:element name="targetdeparturetime" type="tmi8:tmitimeType"/>
+			<xs:element name="journeystoptype" type="tmi8:journeystoptypeType"/>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="tmi8c:delimiter"/>
+				<xs:any namespace="##targetNamespace ##local" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CHANGEDESTINATIONType">
+		<xs:sequence>
+			<xs:element name="userstopcode" type="tmi8:codeType"/>
+			<xs:element name="passagesequencenumber" type="tmi8:passagesequencenumberType"/>
+			<xs:element name="destinationcode" type="tmi8:codeType" minOccurs="0"/>
+			<xs:element name="destinationname50" type="tmi8:destinationname50Type"/>
+			<xs:element name="destinationname16" type="tmi8:destinationname16Type"/>
+			<xs:element name="destinationdetail16" type="tmi8:destinationdetail16Type" minOccurs="0"/>
+			<xs:element name="destinationdisplay16" type="tmi8:destinationdisplay16Type" minOccurs="0"/>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="tmi8c:delimiter"/>
+				<xs:any namespace="##targetNamespace ##local" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MUTATIONMESSAGEType">
+		<xs:sequence>
+			<xs:element name="userstopcode" type="tmi8:codeType"/>
+			<xs:element name="passagesequencenumber" type="tmi8:passagesequencenumberType"/>
+			<xs:sequence minOccurs="0">
+				<xs:element name="reasontype" type="tmi8:sirisxcategoryType"/>
+				<xs:element name="subreasontype" type="tmi8:sirisxcodeType"/>
+			</xs:sequence>
+			<xs:element name="reasoncontent" type="tmi8:contentType" minOccurs="0"/>
+			<xs:sequence minOccurs="0">
+				<xs:element name="advicetype" type="tmi8:sirisxcategoryType"/>
+				<xs:element name="subadvicetype" type="tmi8:sirisxcodeType"/>
+			</xs:sequence>
+			<xs:element name="advicecontent" type="tmi8:contentType" minOccurs="0"/>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="tmi8c:delimiter"/>
+				<xs:any namespace="##targetNamespace ##local" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Message property types                                                            -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xs:group name="MessageProperties">
+		<xs:sequence>
+			<xs:element name="SubscriberID" type="tmi8:SubscriberIDType"/>
+			<xs:element name="Version" type="tmi8:VersionType"/>
+			<xs:element name="DossierName" type="tmi8:DossierNameType"/>
+			<xs:element name="Timestamp" type="tmi8:TimestampType"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:simpleType name="DossierNameType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="KV17cvlinfo"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VersionType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SubscriberIDType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="32"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TimestampType">
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="ResponseCodeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="OK"/>
+			<xs:enumeration value="NOK"/>
+			<xs:enumeration value="SE"/>
+			<xs:enumeration value="NA"/>
+			<xs:enumeration value="PE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ResponseErrorType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Common entity types                                                               -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<xs:simpleType name="dataownercodeType">
+		<xs:annotation id="E1">
+			<xs:documentation xml:lang="nl">
+			Een en ander bepaalt volgens BISON enumeratie E1.
+			Op dit moment bekende waardes zijn:
+			Vervoerders: ARR, VTN, CXX, GVB, HTM, NS, RET, SYNTUS, QBUZZ, TCR,
+			Integrators:  ALGEMEEN, GOVI, RIG, SABIMOS, PRORAIL
+			maar elke waarde is toegestaan
+		 </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="codeType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="destinationname50Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="destinationname16Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="16"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="destinationdetail16Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="16"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="destinationdisplay16Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="16"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="passagesequencenumberType">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tmitimeType">
+		<xs:annotation>
+			<xs:documentation>Format: HH:MM:SS / H:MM:SS accepted values : 00:00:00 - 31:59:59</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="7"/>
+			<xs:maxLength value="8"/>
+			<xs:pattern value="(0|1|2|3|4|5|6|7|8|9|00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31):[012345][0123456789]:[012345][0123456789]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tmidateType">
+		<xs:annotation>
+			<xs:documentation>Format: YYYY-MM-DD</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date">
+			<xs:pattern value="\d{4}-\d{2}-\d{2}"/>
+			<!--
+			<xs:minLength value="10"/>
+			<xs:maxLength value="10"/> -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tmidatetimeType">
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="tmibooleanType">
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:simpleType name="reinforcementnumberType">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="journeynumberType">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="lineplanningnumberType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="lagtimeType">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="sirisxcategoryType">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="sirisxcodeType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+			<xs:pattern value="[\d|_]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="contentType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="journeystoptypeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FIRST"/>
+			<xs:enumeration value="INTERMEDIATE"/>
+			<xs:enumeration value="LAST"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

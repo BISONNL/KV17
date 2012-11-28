@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tmi8:VV_TM_PUSH xmlns:tmi8="http://bison.connekt.nl/tmi8/kv17/msg" xmlns:tmi8c="http://bison.connekt.nl/tmi8/kv17/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://bison.connekt.nl/tmi8/kv17/msg kv17-msg.xsd">
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Uitgewerkt voorbeeld op basis van koppelvlak 17 bijlage 3 -->
+	<!-- "Voorbeeld scenario gebruik koppelvlak 17 in Utrecht"     -->
+	<!-- Bevat daarnaast nog diverse uitgewerkte voorbeeld voor    -->
+	<!-- o.a. ritgerelateerde vrije tekst.                         -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Start van het PUSH document -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<tmi8:SubscriberID>GOVI</tmi8:SubscriberID>
+	<tmi8:Version>8.1.0.0</tmi8:Version>
+	<tmi8:DossierName>KV17cvlinfo</tmi8:DossierName>
+	<tmi8:Timestamp>2007-10-31T11:45:21+01:00</tmi8:Timestamp>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Start uitgewerkte voorbeeld koppelvlak 17 bijlage 3       -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<tmi8:KV17cvlinfo>
+		<!-- dit bericht heeft betrekking op onderstaande (geplande) publieksrit -->
+		<tmi8:KV17JOURNEY>
+			<tmi8:dataownercode>ARR</tmi8:dataownercode>
+			<tmi8:lineplanningnumber>N198</tmi8:lineplanningnumber>
+			<tmi8:operatingday>2007-10-31</tmi8:operatingday>
+			<tmi8:journeynumber>1021</tmi8:journeynumber>
+			<tmi8:reinforcementnumber>0</tmi8:reinforcementnumber>
+		</tmi8:KV17JOURNEY>
+		<tmi8:KV17MUTATEJOURNEY>
+			<!-- deze rit vervalt -->
+			<tmi8:timestamp>2007-10-31T11:44:09.000+01:00</tmi8:timestamp>
+			<tmi8:CANCEL>
+				<tmi8:reasontype>1</tmi8:reasontype>
+				<tmi8:subreasontype>19_1</tmi8:subreasontype>
+			</tmi8:CANCEL>
+		</tmi8:KV17MUTATEJOURNEY>
+		<tmi8:KV17MUTATEJOURNEYSTOP>
+			<tmi8:timestamp>2007-10-31T11:44:09.000+01:00</tmi8:timestamp>
+			<!-- Passage 57330090/1 vervalt voor deze rit -->
+			<tmi8:SHORTEN>
+				<tmi8:userstopcode>57330090</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+			</tmi8:SHORTEN>
+			<!-- Passage 57330092/1 vervalt voor deze rit -->
+			<tmi8:SHORTEN>
+				<tmi8:userstopcode>57330092</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+			</tmi8:SHORTEN>
+			<!-- Verander aankomst en vertrektijden voor passage 5733091/1 op deze rit -->
+			<tmi8:CHANGEPASSTIMES>
+				<tmi8:userstopcode>57330091</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:targetarrivaltime>19:28:00</tmi8:targetarrivaltime>
+				<tmi8:targetdeparturetime>19:30:00</tmi8:targetdeparturetime>
+				<tmi8:journeystoptype>INTERMEDIATE</tmi8:journeystoptype>
+			</tmi8:CHANGEPASSTIMES>
+			<!-- Verander bestemming voor passage 5733091/1 rit -->
+			<tmi8:CHANGEDESTINATION>
+				<tmi8:userstopcode>57330091</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:destinationcode>UtrCS02</tmi8:destinationcode>
+				<tmi8:destinationname50>Utrecht CS Westzijde</tmi8:destinationname50>
+				<tmi8:destinationname16>Utrecht CS</tmi8:destinationname16>
+			</tmi8:CHANGEDESTINATION>
+			<!-- Voertuig op deze rit wacht 5 minuten langer op halte 57330090 -->
+			<tmi8:LAG>
+				<tmi8:userstopcode>57330090</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:lagtime>300</tmi8:lagtime>
+			</tmi8:LAG>
+			<!-- reizigers op halte 57330090 krijgen extra informatie over de mutaties op deze rit -->
+			<tmi8:MUTATIONMESSAGE>
+				<tmi8:userstopcode>57330090</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:reasontype>1</tmi8:reasontype>
+				<tmi8:subreasontype>32</tmi8:subreasontype>
+				<tmi8:advicetype>1</tmi8:advicetype>
+				<tmi8:subadvicetype>2</tmi8:subadvicetype>
+			</tmi8:MUTATIONMESSAGE>
+		</tmi8:KV17MUTATEJOURNEYSTOP>
+	</tmi8:KV17cvlinfo>
+	<!-- schrap een andere publieksrit -->
+	<tmi8:KV17cvlinfo>
+		<tmi8:KV17JOURNEY>
+			<tmi8:dataownercode>ARR</tmi8:dataownercode>
+			<tmi8:lineplanningnumber>N199</tmi8:lineplanningnumber>
+			<tmi8:operatingday>2007-11-01</tmi8:operatingday>
+			<tmi8:journeynumber>842</tmi8:journeynumber>
+			<tmi8:reinforcementnumber>0</tmi8:reinforcementnumber>
+			<!-- illustratie van de werking van de container constructie -->
+			<!-- voorbeeld is hier dat een extra veld is toegevoegd sinds de niet-bestaande 'versie 1.2' -->
+			<tmi8c:delimiter since="versie 1.2"/>
+			<ditveldhebikzojuistbedacht>hier staat onzin</ditveldhebikzojuistbedacht>
+		</tmi8:KV17JOURNEY>
+		<tmi8:KV17MUTATEJOURNEY>
+			<tmi8:timestamp>2007-10-31T11:44:09.000+01:00</tmi8:timestamp>
+			<tmi8:CANCEL>
+        </tmi8:CANCEL>
+		</tmi8:KV17MUTATEJOURNEY>
+		<tmi8:KV17MUTATEJOURNEYSTOP>
+			<tmi8:timestamp>2007-10-31T11:44:09.000+01:00</tmi8:timestamp>
+		</tmi8:KV17MUTATEJOURNEYSTOP>
+	</tmi8:KV17cvlinfo>
+	<tmi8:KV17cvlinfo>
+		<tmi8:KV17JOURNEY>
+			<tmi8:dataownercode>ARR</tmi8:dataownercode>
+			<tmi8:lineplanningnumber>N199</tmi8:lineplanningnumber>
+			<tmi8:operatingday>2007-11-01</tmi8:operatingday>
+			<tmi8:journeynumber>842</tmi8:journeynumber>
+			<tmi8:reinforcementnumber>0</tmi8:reinforcementnumber>
+		</tmi8:KV17JOURNEY>
+		<tmi8:KV17MUTATEJOURNEY>
+			<tmi8:timestamp>2007-10-31T11:44:09.000+01:00</tmi8:timestamp>
+			<!-- Herstel eerdere wijzigingen op de geplande rit; rit is niet langer vervallen -->
+			<tmi8:RECOVER>
+      </tmi8:RECOVER>
+		</tmi8:KV17MUTATEJOURNEY>
+	</tmi8:KV17cvlinfo>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Einde uitgewerkte voorbeeld koppelvlak 17 bijlage 3       -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Start Rit gerelateerde vrije tekst ivm veranderen rolstoeltoegankelijkheid -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<tmi8:KV17cvlinfo>
+		<tmi8:KV17JOURNEY>
+			<tmi8:dataownercode>CXX</tmi8:dataownercode>
+			<tmi8:lineplanningnumber>1</tmi8:lineplanningnumber>
+			<tmi8:operatingday>2009-10-08</tmi8:operatingday>
+			<tmi8:journeynumber>10</tmi8:journeynumber>
+			<tmi8:reinforcementnumber>0</tmi8:reinforcementnumber>
+		</tmi8:KV17JOURNEY>
+		<tmi8:KV17MUTATEJOURNEYSTOP>
+			<tmi8:timestamp>2009-10-08T07:54:00</tmi8:timestamp>
+			<tmi8:MUTATIONMESSAGE>
+				<tmi8:userstopcode>3000</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+				<tmi8:reasoncontent>Voertuig niet toegankelijk voor rolstoelgebruikers (niet lagevloers)</tmi8:reasoncontent>
+				<tmi8:advicecontent>Wacht op volgende bus van 10:00</tmi8:advicecontent>
+			</tmi8:MUTATIONMESSAGE>
+		</tmi8:KV17MUTATEJOURNEYSTOP>
+	</tmi8:KV17cvlinfo>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Einde Rit gerelateerde vrije tekst ivm veranderen rolstoeltoegankelijkheid -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Start andere voorbeelden -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<tmi8:KV17cvlinfo>
+		<tmi8:KV17JOURNEY>
+			<!-- Minimaal koppelvlak 17 dossier -->
+			<tmi8:dataownercode>a</tmi8:dataownercode>
+			<tmi8:lineplanningnumber>1</tmi8:lineplanningnumber>
+			<tmi8:operatingday>2009-09-23</tmi8:operatingday>
+			<tmi8:journeynumber>0</tmi8:journeynumber>
+			<tmi8:reinforcementnumber>0</tmi8:reinforcementnumber>
+		</tmi8:KV17JOURNEY>
+		<tmi8:KV17MUTATEJOURNEYSTOP>
+			<tmi8:timestamp>2007-10-31T11:44:09.000+01:00</tmi8:timestamp>
+		</tmi8:KV17MUTATEJOURNEYSTOP>
+	</tmi8:KV17cvlinfo>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Start toevoegen van een rit op basis van een bestaande rit -->
+	<!-- NOG NIET ONDERSTEUND, WEL GERESERVEERD !!!! -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<tmi8:KV17cvlinfo>
+		<tmi8:KV17JOURNEY>
+			<!-- de nieuwe nog niet bestaande rit -->
+			<tmi8:dataownercode>z</tmi8:dataownercode>
+			<tmi8:lineplanningnumber>100</tmi8:lineplanningnumber>
+			<tmi8:operatingday>2009-09-23</tmi8:operatingday>
+			<tmi8:journeynumber>90</tmi8:journeynumber>
+			<tmi8:reinforcementnumber>1</tmi8:reinforcementnumber>
+		</tmi8:KV17JOURNEY>
+		<tmi8:KV17MUTATEJOURNEY>
+			<tmi8:timestamp>2009-10-08T08:04:00</tmi8:timestamp>
+			<!-- we voegen een rit toe -->
+			<tmi8:ADD>
+				<tmi8c:delimiter since="mogelijke toekomstige uitbreiding - GERESERVEERD"/>
+				<!-- vanuit een bestaande rit die als bron dient -->
+				<tmi8:COPYFROMJOURNEY>
+					<tmi8:dataownercode>z</tmi8:dataownercode>
+					<tmi8:lineplanningnumber>100</tmi8:lineplanningnumber>
+					<tmi8:operatingday>2009-09-23</tmi8:operatingday>
+					<tmi8:journeynumber>90</tmi8:journeynumber>
+					<tmi8:reinforcementnumber>0</tmi8:reinforcementnumber>
+				</tmi8:COPYFROMJOURNEY>
+			</tmi8:ADD>
+		</tmi8:KV17MUTATEJOURNEY>
+		<!-- vervolgens muteren we de nieuwe rit naar de gewenste situatie -->
+		<tmi8:KV17MUTATEJOURNEYSTOP>
+			<tmi8:timestamp>2009-10-08T08:04:00</tmi8:timestamp>
+			<!-- beginhalte vervalt -->
+			<tmi8:SHORTEN>
+				<tmi8:userstopcode>1</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+			</tmi8:SHORTEN>
+			<!-- eindhalte vervalt -->
+			<tmi8:SHORTEN>
+				<tmi8:userstopcode>100</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+			</tmi8:SHORTEN>
+			<!-- geeft reizigers op de beginhalte een redden om te rennen naar halte twee-->
+			<tmi8:MUTATIONMESSAGE>
+				<tmi8:userstopcode>1</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+				<tmi8:advicecontent>Op halte twee wordt een extra bus ingezet</tmi8:advicecontent>
+			</tmi8:MUTATIONMESSAGE>
+			<!-- wacht op aansluiting -->
+			<tmi8:LAG>
+				<tmi8:userstopcode>2</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+				<tmi8:lagtime>300</tmi8:lagtime>
+			</tmi8:LAG>
+			<tmi8:MUTATIONMESSAGE>
+				<tmi8:userstopcode>2</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+				<tmi8:reasoncontent>Wacht op aansluiting lijn 99</tmi8:reasoncontent>
+			</tmi8:MUTATIONMESSAGE>
+			<!-- pas voor halte 3 de aankomst en vertrektijden aan -->
+			<tmi8:CHANGEPASSTIMES>
+				<tmi8:userstopcode>3</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+				<tmi8:targetarrivaltime>08:17:00</tmi8:targetarrivaltime>
+				<tmi8:targetdeparturetime>08:20:00</tmi8:targetdeparturetime>
+				<tmi8:journeystoptype>INTERMEDIATE</tmi8:journeystoptype>
+			</tmi8:CHANGEPASSTIMES>
+			<!-- en als laatste pas de bestemming aan voor alle haltes -->
+			<tmi8:CHANGEDESTINATION>
+				<tmi8:userstopcode>2</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+				<tmi8:destinationname50>ROTTERDAM CS</tmi8:destinationname50>
+				<tmi8:destinationname16>ROTTERDAM CS</tmi8:destinationname16>
+				<tmi8:destinationdetail16>via ALEXANDER</tmi8:destinationdetail16>
+			</tmi8:CHANGEDESTINATION>
+			<tmi8:CHANGEDESTINATION>
+				<tmi8:userstopcode>3</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+				<tmi8:destinationname50>ROTTERDAM CS</tmi8:destinationname50>
+				<tmi8:destinationname16>ROTTERDAM CS</tmi8:destinationname16>
+				<tmi8:destinationdetail16>via ALEXANDER</tmi8:destinationdetail16>
+			</tmi8:CHANGEDESTINATION>
+		</tmi8:KV17MUTATEJOURNEYSTOP>
+	</tmi8:KV17cvlinfo>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Einde toevoegen van een rit op basis van een bestaande rit -->
+	<!-- NOG NIET ONDERSTEUND, WEL GERESERVEERD !!!! -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Start van een compleet nieuwe rit -->
+	<!-- NOG NIET ONDERSTEUND, WEL GERESERVEERD !!!! -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<tmi8:KV17cvlinfo>
+		<tmi8:KV17JOURNEY>
+			<!-- de nieuwe nog niet bestaande rit -->
+			<tmi8:dataownercode>BISON</tmi8:dataownercode>
+			<tmi8:lineplanningnumber>1rst</tmi8:lineplanningnumber>
+			<tmi8:operatingday>2009-10-08</tmi8:operatingday>
+			<tmi8:journeynumber>0</tmi8:journeynumber>
+			<tmi8:reinforcementnumber>0</tmi8:reinforcementnumber>
+		</tmi8:KV17JOURNEY>
+		<tmi8:KV17MUTATEJOURNEY>
+			<tmi8:timestamp>2009-10-08T09:20:00</tmi8:timestamp>
+			<!-- we voegen een rit toe -->
+			<tmi8:ADD>
+				<tmi8c:delimiter since="mogelijke toekomstige uitbreiding, GERSERVEER"/>
+				<!-- vanuit het niets -->
+				<tmi8:insertfromscratch>true</tmi8:insertfromscratch>
+			</tmi8:ADD>
+		</tmi8:KV17MUTATEJOURNEY>
+		<!-- en specificeren daarna hoe de rit eruit komt te zien -->
+		<tmi8:KV17MUTATEJOURNEYSTOP>
+			<tmi8:timestamp>2009-10-08T10:09:00</tmi8:timestamp>
+			<!-- de beginhalte, alleen de vertrektijd moet getoond worden -->
+			<tmi8:CHANGEPASSTIMES>
+				<tmi8:userstopcode>90</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+				<tmi8:targetarrivaltime>10:00:00</tmi8:targetarrivaltime>
+				<tmi8:targetdeparturetime>10:00:00</tmi8:targetdeparturetime>
+				<tmi8:journeystoptype>FIRST</tmi8:journeystoptype>
+			</tmi8:CHANGEPASSTIMES>
+			<tmi8:CHANGEDESTINATION>
+				<tmi8:userstopcode>90</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+				<tmi8:destinationname50>Rotterdam CS</tmi8:destinationname50>
+				<tmi8:destinationname16>Rotterdam CS</tmi8:destinationname16>
+				<tmi8:destinationdetail16>via pieterburen</tmi8:destinationdetail16>
+				<tmi8:destinationdisplay16>R'damViaP'buren</tmi8:destinationdisplay16>
+			</tmi8:CHANGEDESTINATION>
+			<!-- de tussen halte, aankomst en/of vertrektijden mogen getoond worden -->
+			<tmi8:CHANGEPASSTIMES>
+				<tmi8:userstopcode>91</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+				<tmi8:targetarrivaltime>11:00:00</tmi8:targetarrivaltime>
+				<tmi8:targetdeparturetime>11:01:00</tmi8:targetdeparturetime>
+				<tmi8:journeystoptype>INTERMEDIATE</tmi8:journeystoptype>
+			</tmi8:CHANGEPASSTIMES>
+			<tmi8:CHANGEDESTINATION>
+				<tmi8:userstopcode>91</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+				<tmi8:destinationname50>Rotterdam CS</tmi8:destinationname50>
+				<tmi8:destinationname16>Rotterdam CS</tmi8:destinationname16>
+				<tmi8:destinationdetail16>via pieterburen</tmi8:destinationdetail16>
+				<tmi8:destinationdisplay16>R'damViaP'buren</tmi8:destinationdisplay16>
+			</tmi8:CHANGEDESTINATION>
+			<!-- de eindhalte, alleen de aankomsttijd moet getoond te worden -->
+			<tmi8:CHANGEPASSTIMES>
+				<tmi8:userstopcode>92</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+				<tmi8:targetarrivaltime>12:00:00</tmi8:targetarrivaltime>
+				<tmi8:targetdeparturetime>12:00:00</tmi8:targetdeparturetime>
+				<tmi8:journeystoptype>LAST</tmi8:journeystoptype>
+			</tmi8:CHANGEPASSTIMES>
+			<tmi8:CHANGEDESTINATION>
+				<tmi8:userstopcode>90</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+				<tmi8:destinationname50>Rotterdam CS</tmi8:destinationname50>
+				<tmi8:destinationname16>Rotterdam CS</tmi8:destinationname16>
+				<tmi8:destinationdetail16>via pieterburen</tmi8:destinationdetail16>
+				<tmi8:destinationdisplay16>R'damViaP'buren</tmi8:destinationdisplay16>
+			</tmi8:CHANGEDESTINATION>
+		</tmi8:KV17MUTATEJOURNEYSTOP>
+	</tmi8:KV17cvlinfo>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Einde van een compleet nieuwe rit -->
+	<!-- NOG NIET ONDERSTEUND, WEL GERESERVEERD !!!! -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Einde van het PUSH document -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+</tmi8:VV_TM_PUSH>
