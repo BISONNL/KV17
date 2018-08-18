@@ -1,153 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tmi8:VV_TM_PUSH 
-xmlns:tmi8="http://bison.connekt.nl/tmi8/kv17/msg" 
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://bison.connekt.nl/tmi8/kv17/msg kv17-msg.xsd">
+<tmi8:VV_TM_PUSH xmlns:tmi8="http://bison.connekt.nl/tmi8/kv17/msg" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://bison.connekt.nl/tmi8/kv17/msg kv17.820-msg.xsd">
 	<tmi8:SubscriberID>GOVI</tmi8:SubscriberID>
-	<tmi8:Version>8.1.0.0</tmi8:Version>
+	<tmi8:Version>8.2.0</tmi8:Version>
 	<tmi8:DossierName>KV17cvlinfo</tmi8:DossierName>
 	<tmi8:Timestamp>2009-01-12T08:15:25+01:00</tmi8:Timestamp>
-		<tmi8:KV17cvlinfo>
-		
-			<!-- dit bericht heeft betrekking op onderstaande rit -->
-			<tmi8:KV17journey>
-				<tmi8:dataownercode>CXX</tmi8:dataownercode>
-				<tmi8:lineplanningnumber>120</tmi8:lineplanningnumber>
-				<tmi8:journeynumber>525</tmi8:journeynumber>
-				<tmi8:operatingday>20090112</tmi8:operatingday>
-				<tmi8:reinforcementnumber>0</tmi8:reinforcementnumber>
-			</tmi8:KV17journey>
-			
-			<!-- mutaties op de gehele rit -->
-			<tmi8:KV17mutateplanning>
-				<!-- er zijn geen mutaties op de planning (geen vervallen rit) -->
-			</tmi8:KV17mutateplanning>
-			
-			<!-- mutaties per halte op de rit -->
-			<tmi8:KV17mutatejourney>
-				<!-- Passage 101/1 vervalt  -->
-				<tmi8:SHORTEN>
-					<tmi8:userstopcode>101</tmi8:userstopcode>
-					<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-					<tmi8:timestamp>2009-01-12T08:15:00.000+01:00</tmi8:timestamp>
-				</tmi8:SHORTEN>
-				<!-- Passage 110/1 (halte UMC) vervalt -->
-				<tmi8:SHORTEN>
-					<tmi8:userstopcode>110</tmi8:userstopcode>
-					<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-					<tmi8:timestamp>2009-01-12T08:15:00.000+01:00</tmi8:timestamp>
-				</tmi8:SHORTEN>
-				<!-- Passage 109/1 (halte9) vervalt -->
-				<tmi8:SHORTEN>
-					<tmi8:userstopcode>109</tmi8:userstopcode>
-					<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-					<tmi8:timestamp>2009-01-12T08:15:00+01:00</tmi8:timestamp>
-				</tmi8:SHORTEN>
-				<!-- Passage 108/1 (halte8) vervalt -->
-				<tmi8:SHORTEN>
-					<tmi8:userstopcode>108</tmi8:userstopcode>
-					<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-					<tmi8:timestamp>2009-01-12T08:15:00.000+01:00</tmi8:timestamp>
-				</tmi8:SHORTEN>
-				<!-- Passage 107/1 (halte7) vervalt -->
-				<tmi8:SHORTEN>
-					<tmi8:userstopcode>107</tmi8:userstopcode>
-					<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-					<tmi8:timestamp>2009-01-12T08:15:00.000+01:00</tmi8:timestamp>
-				</tmi8:SHORTEN>
-				
-				<!-- Verander aankomst en vertrektijden voor passage 102/1; het is tevens de nieuwe beginhalte -->
-				<tmi8:CHANGEPASSTIMES>
-					<tmi8:userstopcode>102</tmi8:userstopcode>
-					<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-					<tmi8:timestamp>2009-01-12T08:15:00.000+01:00</tmi8:timestamp>
-					<!-- merk op dat de aankomsttijd niet valide is; het is immers de beginhalte -->
-					<tmi8:targetarrivaltime>00:00:00</tmi8:targetarrivaltime>
-					<tmi8:targetdeparturetime>08:40:00</tmi8:targetdeparturetime>
-					<tmi8:journeystoptype>FIRST</tmi8:journeystoptype>
-				</tmi8:CHANGEPASSTIMES>
-				<!-- Verander aankomst en vertrektijden voor passage 103/1 -->
-				<tmi8:CHANGEPASSTIMES>
-					<tmi8:userstopcode>103</tmi8:userstopcode>
-					<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-					<tmi8:timestamp>2009-01-12T08:15:00.000+01:00</tmi8:timestamp>
-					<tmi8:targetarrivaltime>08:45:00</tmi8:targetarrivaltime>
-					<tmi8:targetdeparturetime>08:45:00</tmi8:targetdeparturetime>
-					<tmi8:journeystoptype>INTERMEDIATE</tmi8:journeystoptype>
-				</tmi8:CHANGEPASSTIMES>
-				<!-- Verander aankomst en vertrektijden voor passage 104/1 -->
-				<tmi8:CHANGEPASSTIMES>
-					<tmi8:userstopcode>104</tmi8:userstopcode>
-					<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-					<tmi8:timestamp>2009-01-12T08:15:00.000+01:00</tmi8:timestamp>
-					<tmi8:targetarrivaltime>08:50:00</tmi8:targetarrivaltime>
-					<tmi8:targetdeparturetime>08:50:00</tmi8:targetdeparturetime>
-					<tmi8:journeystoptype>INTERMEDIATE</tmi8:journeystoptype>
-				</tmi8:CHANGEPASSTIMES>
-				<!-- Verander aankomst en vertrektijden voor passage 105/1 -->
-				<tmi8:CHANGEPASSTIMES>
-					<tmi8:userstopcode>105</tmi8:userstopcode>
-					<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-					<tmi8:timestamp>2009-01-12T08:15:00.000+01:00</tmi8:timestamp>
-					<tmi8:targetarrivaltime>08:55:00</tmi8:targetarrivaltime>
-					<tmi8:targetdeparturetime>09:00:00</tmi8:targetdeparturetime>
-					<tmi8:journeystoptype>INTERMEDIATE</tmi8:journeystoptype>
-				</tmi8:CHANGEPASSTIMES>
-				<!-- Verander aankomst en vertrektijden voor passage 106/1; tevens de nieuwe eindhalte -->
-				<tmi8:CHANGEPASSTIMES>
-					<tmi8:userstopcode>106</tmi8:userstopcode>
-					<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-					<tmi8:timestamp>2009-01-12T08:15:00.000+01:00</tmi8:timestamp>
-					<tmi8:targetarrivaltime>09:05:00</tmi8:targetarrivaltime>
-					<tmi8:targetdeparturetime>00:00:00</tmi8:targetdeparturetime>
-					<tmi8:journeystoptype>LAST</tmi8:journeystoptype>
-					<!-- merk op dat hier de vertrektijd niet valide is; het is immers de eindhalte voor de rit -->
-				</tmi8:CHANGEPASSTIMES>
-				
-				<!-- alle haltes van de ingekorte rit hebben als nieuwe bestemming halte Utrecht Neude, bekend als code UtrNeude01 -->
-				<tmi8:CHANGEDESTINATION>
-					<tmi8:userstopcode>102</tmi8:userstopcode>
-					<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-					<tmi8:timestamp>2009-01-12T08:15:00.000+01:00</tmi8:timestamp>
-					<tmi8:destinationcode>UtrNeude01</tmi8:destinationcode>
-					<tmi8:destinationname50>Utrecht Neude</tmi8:destinationname50>
-					<tmi8:destinationname16>Utrecht Neude</tmi8:destinationname16>
-				</tmi8:CHANGEDESTINATION>
-				<tmi8:CHANGEDESTINATION>
-					<tmi8:userstopcode>103</tmi8:userstopcode>
-					<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-					<tmi8:timestamp>2009-01-12T08:15:00.000+01:00</tmi8:timestamp>
-					<tmi8:destinationcode>UtrNeude01</tmi8:destinationcode>
-					<tmi8:destinationname50>Utrecht Neude</tmi8:destinationname50>
-					<tmi8:destinationname16>Utrecht Neude</tmi8:destinationname16>
-				</tmi8:CHANGEDESTINATION>
-				<tmi8:CHANGEDESTINATION>
-					<tmi8:userstopcode>104</tmi8:userstopcode>
-					<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-					<tmi8:timestamp>2009-01-12T08:15:00.000+01:00</tmi8:timestamp>
-					<tmi8:destinationcode>UtrNeude01</tmi8:destinationcode>
-					<tmi8:destinationname50>Utrecht Neude</tmi8:destinationname50>
-					<tmi8:destinationname16>Utrecht Neude</tmi8:destinationname16>
-				</tmi8:CHANGEDESTINATION>
-				<tmi8:CHANGEDESTINATION>
-					<tmi8:userstopcode>105</tmi8:userstopcode>
-					<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-					<tmi8:timestamp>2009-01-12T08:15:00.000+01:00</tmi8:timestamp>
-					<tmi8:destinationcode>UtrNeude01</tmi8:destinationcode>
-					<tmi8:destinationname50>Utrecht Neude</tmi8:destinationname50>
-					<tmi8:destinationname16>Utrecht Neude</tmi8:destinationname16>
-				</tmi8:CHANGEDESTINATION>
-				
-				<!-- Op halte Utrecht Centraal Station wordt de reiziger erop geattendeerd dat de rit wegens werkzaamheden is ingekort -->
-				<!-- Dit gebeurt zowel door middel van een code (reason 1/23)  als door een expliciete platte tekst -->
-				<tmi8:MUTATIONMESSAGE>
-					<tmi8:userstopcode>105</tmi8:userstopcode>
-					<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-					<tmi8:timestamp>2009-01-12T08:15:00.000+01:00</tmi8:timestamp>
-					<tmi8:reasontype>1</tmi8:reasontype> <!-- pti19 -->
-					<tmi8:subreasontype>23</tmi8:subreasontype> <!-- subtype 23 -->
-					<tmi8:advicecontent>wegens werkzaamheden</tmi8:advicecontent>		
-				</tmi8:MUTATIONMESSAGE>
-			</tmi8:KV17mutatejourney>
-		</tmi8:KV17cvlinfo>
+	<tmi8:KV17cvlinfo>
+		<!-- dit bericht heeft betrekking op onderstaande rit -->
+		<tmi8:KV17JOURNEY>
+			<tmi8:dataownercode>CXX</tmi8:dataownercode>
+			<tmi8:lineplanningnumber>120</tmi8:lineplanningnumber>
+			<tmi8:operatingday>2009-01-12</tmi8:operatingday>
+			<tmi8:journeynumber>525</tmi8:journeynumber>
+			<tmi8:reinforcementnumber>0</tmi8:reinforcementnumber>
+		</tmi8:KV17JOURNEY>
+		<!-- Er zijn geen mutaties op de gehele rit (tmi8:KV17MUTATEJOURNEY) -->
+		<!-- mutaties per halte op de rit -->
+		<tmi8:KV17MUTATEJOURNEYSTOP>
+			<!-- tijdstip van de mutatie -->
+			<tmi8:timestamp>2009-01-12T08:15:00.000+01:00</tmi8:timestamp>
+			<!-- Passage 101/1 vervalt  -->
+			<tmi8:SHORTEN>
+				<tmi8:userstopcode>101</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:showcancelledtrip>true</tmi8:showcancelledtrip>
+			</tmi8:SHORTEN>
+			<!-- Passage 110/1 (halte UMC) vervalt -->
+			<tmi8:SHORTEN>
+				<tmi8:userstopcode>110</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:showcancelledtrip>true</tmi8:showcancelledtrip>
+			</tmi8:SHORTEN>
+			<!-- Passage 109/1 (halte9) vervalt -->
+			<tmi8:SHORTEN>
+				<tmi8:userstopcode>109</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:showcancelledtrip>true</tmi8:showcancelledtrip>
+			</tmi8:SHORTEN>
+			<!-- Passage 108/1 (halte8) vervalt -->
+			<tmi8:SHORTEN>
+				<tmi8:userstopcode>108</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:showcancelledtrip>true</tmi8:showcancelledtrip>
+			</tmi8:SHORTEN>
+			<!-- Passage 107/1 (halte7) vervalt -->
+			<tmi8:SHORTEN>
+				<tmi8:userstopcode>107</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:showcancelledtrip>true</tmi8:showcancelledtrip>
+			</tmi8:SHORTEN>
+			<!-- Verander aankomst en vertrektijden voor passage 102/1; het is tevens de nieuwe beginhalte -->
+			<tmi8:CHANGEPASSTIMES>
+				<tmi8:userstopcode>102</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<!-- merk op dat de aankomsttijd niet valide is; het is immers de beginhalte -->
+				<tmi8:targetarrivaltime>00:00:00</tmi8:targetarrivaltime>
+				<tmi8:targetdeparturetime>08:40:00</tmi8:targetdeparturetime>
+				<tmi8:journeystoptype>FIRST</tmi8:journeystoptype>
+			</tmi8:CHANGEPASSTIMES>
+			<!-- Verander aankomst en vertrektijden voor passage 103/1 -->
+			<tmi8:CHANGEPASSTIMES>
+				<tmi8:userstopcode>103</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:targetarrivaltime>08:45:00</tmi8:targetarrivaltime>
+				<tmi8:targetdeparturetime>08:45:00</tmi8:targetdeparturetime>
+				<tmi8:journeystoptype>INTERMEDIATE</tmi8:journeystoptype>
+			</tmi8:CHANGEPASSTIMES>
+			<!-- Verander aankomst en vertrektijden voor passage 104/1 -->
+			<tmi8:CHANGEPASSTIMES>
+				<tmi8:userstopcode>104</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:targetarrivaltime>08:50:00</tmi8:targetarrivaltime>
+				<tmi8:targetdeparturetime>08:50:00</tmi8:targetdeparturetime>
+				<tmi8:journeystoptype>INTERMEDIATE</tmi8:journeystoptype>
+			</tmi8:CHANGEPASSTIMES>
+			<!-- Verander aankomst en vertrektijden voor passage 105/1 -->
+			<tmi8:CHANGEPASSTIMES>
+				<tmi8:userstopcode>105</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:targetarrivaltime>08:55:00</tmi8:targetarrivaltime>
+				<tmi8:targetdeparturetime>09:00:00</tmi8:targetdeparturetime>
+				<tmi8:journeystoptype>INTERMEDIATE</tmi8:journeystoptype>
+			</tmi8:CHANGEPASSTIMES>
+			<!-- Verander aankomst en vertrektijden voor passage 106/1; tevens de nieuwe eindhalte -->
+			<tmi8:CHANGEPASSTIMES>
+				<tmi8:userstopcode>106</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:targetarrivaltime>09:05:00</tmi8:targetarrivaltime>
+				<tmi8:targetdeparturetime>00:00:00</tmi8:targetdeparturetime>
+				<tmi8:journeystoptype>LAST</tmi8:journeystoptype>
+				<!-- merk op dat hier de vertrektijd niet valide is; het is immers de eindhalte voor de rit -->
+			</tmi8:CHANGEPASSTIMES>
+			<!-- alle haltes van de ingekorte rit hebben als nieuwe bestemming halte Utrecht Neude, bekend als code UtrNeude01 -->
+			<tmi8:CHANGEDESTINATION>
+				<tmi8:userstopcode>102</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:destinationcode>UtrNeude01</tmi8:destinationcode>
+				<tmi8:destinationname50>Utrecht Neude</tmi8:destinationname50>
+				<tmi8:destinationname16>Utrecht Neude</tmi8:destinationname16>
+			</tmi8:CHANGEDESTINATION>
+			<tmi8:CHANGEDESTINATION>
+				<tmi8:userstopcode>103</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:destinationcode>UtrNeude01</tmi8:destinationcode>
+				<tmi8:destinationname50>Utrecht Neude</tmi8:destinationname50>
+				<tmi8:destinationname16>Utrecht Neude</tmi8:destinationname16>
+			</tmi8:CHANGEDESTINATION>
+			<tmi8:CHANGEDESTINATION>
+				<tmi8:userstopcode>104</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:destinationcode>UtrNeude01</tmi8:destinationcode>
+				<tmi8:destinationname50>Utrecht Neude</tmi8:destinationname50>
+				<tmi8:destinationname16>Utrecht Neude</tmi8:destinationname16>
+			</tmi8:CHANGEDESTINATION>
+			<tmi8:CHANGEDESTINATION>
+				<tmi8:userstopcode>105</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:destinationcode>UtrNeude01</tmi8:destinationcode>
+				<tmi8:destinationname50>Utrecht Neude</tmi8:destinationname50>
+				<tmi8:destinationname16>Utrecht Neude</tmi8:destinationname16>
+			</tmi8:CHANGEDESTINATION>
+			<!-- Op halte Utrecht Centraal Station wordt de reiziger erop geattendeerd dat de rit wegens werkzaamheden is ingekort -->
+			<!-- Dit gebeurt zowel door middel van een code (reason 1/23)  als door een expliciete platte tekst -->
+			<tmi8:MUTATIONMESSAGE>
+				<tmi8:userstopcode>105</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:reasontype>1</tmi8:reasontype>
+				<!-- pti19 -->
+				<tmi8:subreasontype>23</tmi8:subreasontype>
+				<!-- subtype 23 -->
+				<tmi8:reasoncontent>wegens werkzaamheden</tmi8:reasoncontent>
+				<tmi8:advicecontent>zoek zelf een alternatief</tmi8:advicecontent>
+			</tmi8:MUTATIONMESSAGE>
+		</tmi8:KV17MUTATEJOURNEYSTOP>
+	</tmi8:KV17cvlinfo>
 </tmi8:VV_TM_PUSH>

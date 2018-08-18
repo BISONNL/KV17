@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tmi8:VV_TM_PUSH xmlns:tmi8="http://bison.connekt.nl/tmi8/kv17/msg" xmlns:tmi8c="http://bison.connekt.nl/tmi8/kv17/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://bison.connekt.nl/tmi8/kv17/msg kv17-msg.xsd">
+<tmi8:VV_TM_PUSH xmlns:tmi8="http://bison.connekt.nl/tmi8/kv17/msg" xmlns:tmi8c="http://bison.connekt.nl/tmi8/kv17/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://bison.connekt.nl/tmi8/kv17/msg kv17.820-msg.xsd">
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	<!-- Uitgewerkt voorbeeld op basis van koppelvlak 17 bijlage 3 -->
 	<!-- "Voorbeeld scenario gebruik koppelvlak 17 in Utrecht"     -->
@@ -10,7 +10,7 @@
 	<!-- Start van het PUSH document -->
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	<tmi8:SubscriberID>GOVI</tmi8:SubscriberID>
-	<tmi8:Version>8.1.0.0</tmi8:Version>
+	<tmi8:Version>8.2.0</tmi8:Version>
 	<tmi8:DossierName>KV17cvlinfo</tmi8:DossierName>
 	<tmi8:Timestamp>2007-10-31T11:45:21+01:00</tmi8:Timestamp>
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -31,6 +31,7 @@
 			<tmi8:CANCEL>
 				<tmi8:reasontype>1</tmi8:reasontype>
 				<tmi8:subreasontype>19_1</tmi8:subreasontype>
+				<tmi8:showcancelledtrip>false</tmi8:showcancelledtrip>
 			</tmi8:CANCEL>
 		</tmi8:KV17MUTATEJOURNEY>
 		<tmi8:KV17MUTATEJOURNEYSTOP>
@@ -39,11 +40,13 @@
 			<tmi8:SHORTEN>
 				<tmi8:userstopcode>57330090</tmi8:userstopcode>
 				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:showcancelledtrip>true</tmi8:showcancelledtrip>
 			</tmi8:SHORTEN>
 			<!-- Passage 57330092/1 vervalt voor deze rit -->
 			<tmi8:SHORTEN>
 				<tmi8:userstopcode>57330092</tmi8:userstopcode>
 				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
+				<tmi8:showcancelledtrip>true</tmi8:showcancelledtrip>
 			</tmi8:SHORTEN>
 			<!-- Verander aankomst en vertrektijden voor passage 5733091/1 op deze rit -->
 			<tmi8:CHANGEPASSTIMES>
@@ -94,7 +97,8 @@
 		<tmi8:KV17MUTATEJOURNEY>
 			<tmi8:timestamp>2007-10-31T11:44:09.000+01:00</tmi8:timestamp>
 			<tmi8:CANCEL>
-        </tmi8:CANCEL>
+				<tmi8:showcancelledtrip>true</tmi8:showcancelledtrip>
+			</tmi8:CANCEL>
 		</tmi8:KV17MUTATEJOURNEY>
 		<tmi8:KV17MUTATEJOURNEYSTOP>
 			<tmi8:timestamp>2007-10-31T11:44:09.000+01:00</tmi8:timestamp>
@@ -112,7 +116,7 @@
 			<tmi8:timestamp>2007-10-31T11:44:09.000+01:00</tmi8:timestamp>
 			<!-- Herstel eerdere wijzigingen op de geplande rit; rit is niet langer vervallen -->
 			<tmi8:RECOVER>
-      </tmi8:RECOVER>
+			</tmi8:RECOVER>
 		</tmi8:KV17MUTATEJOURNEY>
 	</tmi8:KV17cvlinfo>
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -141,6 +145,48 @@
 	</tmi8:KV17cvlinfo>
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	<!-- Einde Rit gerelateerde vrije tekst ivm veranderen rolstoeltoegankelijkheid -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Start Rit gerelateerde vrije tekst ivm wijzigen 'vervallen' melding op display -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<tmi8:KV17cvlinfo>
+		<tmi8:KV17JOURNEY>
+			<tmi8:dataownercode>ARR</tmi8:dataownercode>
+			<tmi8:lineplanningnumber>N199</tmi8:lineplanningnumber>
+			<tmi8:operatingday>2007-11-01</tmi8:operatingday>
+			<tmi8:journeynumber>842</tmi8:journeynumber>
+			<tmi8:reinforcementnumber>0</tmi8:reinforcementnumber>
+		</tmi8:KV17JOURNEY>
+		<tmi8:KV17MUTATEJOURNEYSTOP>
+			<tmi8:timestamp>2009-10-08T07:54:00</tmi8:timestamp>
+			<tmi8:MUTATIONMESSAGE>
+				<tmi8:userstopcode>3001</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+				<tmi8:reasoncontent>Lijn N199 rijdt vannacht niet</tmi8:reasoncontent>
+				<tmi8:showcancelledtrip>false</tmi8:showcancelledtrip>
+			</tmi8:MUTATIONMESSAGE>
+			<tmi8:MUTATIONMESSAGE>
+				<tmi8:userstopcode>3002</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+				<tmi8:reasoncontent>Lijn N199 rijdt vannacht niet</tmi8:reasoncontent>
+				<tmi8:showcancelledtrip>false</tmi8:showcancelledtrip>
+			</tmi8:MUTATIONMESSAGE>
+			<tmi8:MUTATIONMESSAGE>
+				<tmi8:userstopcode>3003</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+				<tmi8:reasoncontent>Lijn N199 rijdt vannacht niet</tmi8:reasoncontent>
+				<tmi8:showcancelledtrip>false</tmi8:showcancelledtrip>
+			</tmi8:MUTATIONMESSAGE>
+			<tmi8:MUTATIONMESSAGE>
+				<tmi8:userstopcode>3004</tmi8:userstopcode>
+				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+				<tmi8:reasoncontent>Lijn N199 rijdt vannacht niet</tmi8:reasoncontent>
+				<tmi8:showcancelledtrip>false</tmi8:showcancelledtrip>
+			</tmi8:MUTATIONMESSAGE>
+		</tmi8:KV17MUTATEJOURNEYSTOP>
+	</tmi8:KV17cvlinfo>
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Einde Rit gerelateerde vrije tekst ivm wijzigen 'vervallen' melding op display -->
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	<!-- Start andere voorbeelden -->
@@ -193,11 +239,13 @@
 			<tmi8:SHORTEN>
 				<tmi8:userstopcode>1</tmi8:userstopcode>
 				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+				<tmi8:showcancelledtrip>true</tmi8:showcancelledtrip>
 			</tmi8:SHORTEN>
 			<!-- eindhalte vervalt -->
 			<tmi8:SHORTEN>
 				<tmi8:userstopcode>100</tmi8:userstopcode>
 				<tmi8:passagesequencenumber>0</tmi8:passagesequencenumber>
+				<tmi8:showcancelledtrip>true</tmi8:showcancelledtrip>
 			</tmi8:SHORTEN>
 			<!-- geeft reizigers op de beginhalte een redden om te rennen naar halte twee-->
 			<tmi8:MUTATIONMESSAGE>
