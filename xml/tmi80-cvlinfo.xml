@@ -119,6 +119,58 @@
 			</tmi8:RECOVER>
 		</tmi8:KV17MUTATEJOURNEY>
 	</tmi8:KV17cvlinfo>
+	<!-- schrap alle actieve en toekomstige ritten van Arriva op lijn N199 -->
+	<tmi8:KV17cvlinfo>
+		<tmi8:KV17JOURNEY>
+			<tmi8:dataownercode>ARR</tmi8:dataownercode>
+			<tmi8:lineplanningnumber>N199</tmi8:lineplanningnumber>
+			<tmi8:operatingday>2007-11-01</tmi8:operatingday>
+		</tmi8:KV17JOURNEY>
+		<tmi8:KV17MUTATEJOURNEY>
+			<tmi8:timestamp>2007-10-31T11:44:09.000+01:00</tmi8:timestamp>
+			<tmi8:CANCEL>
+				<tmi8:showcancelledtrip>true</tmi8:showcancelledtrip>
+			</tmi8:CANCEL>
+		</tmi8:KV17MUTATEJOURNEY>
+	</tmi8:KV17cvlinfo>
+	<!-- herstel de ritten van Arriva op lijn N199 -->
+	<!-- TODO: willen we hier een vanaf moment bij hebben? -->
+	<tmi8:KV17cvlinfo>
+		<tmi8:KV17JOURNEY>
+			<tmi8:dataownercode>ARR</tmi8:dataownercode>
+			<tmi8:lineplanningnumber>N199</tmi8:lineplanningnumber>
+			<tmi8:operatingday>2007-11-01</tmi8:operatingday>
+		</tmi8:KV17JOURNEY>
+		<tmi8:KV17MUTATEJOURNEY>
+			<tmi8:timestamp>2007-10-31T11:44:09.000+01:00</tmi8:timestamp>
+			<tmi8:RECOVER />
+		</tmi8:KV17MUTATEJOURNEY>
+	</tmi8:KV17cvlinfo>
+	<!-- schrap alle actieve en toekomstige ritten van HTM en maak de borden leeg -->
+	<tmi8:KV17cvlinfo>
+		<tmi8:KV17JOURNEY>
+			<tmi8:dataownercode>HTM</tmi8:dataownercode>
+			<tmi8:operatingday>2007-11-01</tmi8:operatingday>
+		</tmi8:KV17JOURNEY>
+		<tmi8:KV17MUTATEJOURNEY>
+			<tmi8:timestamp>2007-10-31T11:44:09.000+01:00</tmi8:timestamp>
+			<tmi8:CANCEL>
+				<tmi8:showcancelledtrip>false</tmi8:showcancelledtrip>
+			</tmi8:CANCEL>
+		</tmi8:KV17MUTATEJOURNEY>
+	</tmi8:KV17cvlinfo>
+	<!-- herstel de ritten van HTM -->
+	<!-- TODO: willen we hier een vanaf moment bij hebben? -->
+	<tmi8:KV17cvlinfo>
+		<tmi8:KV17JOURNEY>
+			<tmi8:dataownercode>HTM</tmi8:dataownercode>
+			<tmi8:operatingday>2007-11-01</tmi8:operatingday>
+		</tmi8:KV17JOURNEY>
+		<tmi8:KV17MUTATEJOURNEY>
+			<tmi8:timestamp>2007-10-31T11:44:09.000+01:00</tmi8:timestamp>
+			<tmi8:RECOVER />
+		</tmi8:KV17MUTATEJOURNEY>
+	</tmi8:KV17cvlinfo>
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	<!-- Einde uitgewerkte voorbeeld koppelvlak 17 bijlage 3       -->
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->

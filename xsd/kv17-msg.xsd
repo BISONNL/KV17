@@ -71,10 +71,10 @@
 	<xs:complexType name="KV17journeyType">
 		<xs:sequence>
 			<xs:element name="dataownercode" type="tmi8:dataownercodeType"/>
-			<xs:element name="lineplanningnumber" type="tmi8:lineplanningnumberType"/>
+			<xs:element name="lineplanningnumber" type="tmi8:lineplanningnumberType" minOccurs="0" />
 			<xs:element name="operatingday" type="tmi8:tmidateType"/>
-			<xs:element name="journeynumber" type="tmi8:journeynumberType"/>
-			<xs:element name="reinforcementnumber" type="tmi8:reinforcementnumberType"/>
+			<xs:element name="journeynumber" type="tmi8:journeynumberType" minOccurs="0" />
+			<xs:element name="reinforcementnumber" type="tmi8:reinforcementnumberType" minOccurs="0" />
 			<xs:sequence minOccurs="0" maxOccurs="unbounded">
 				<xs:element ref="tmi8c:delimiter"/>
 				<xs:any namespace="##targetNamespace ##local" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
