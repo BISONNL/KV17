@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2014 sp1 (x64) (http://www.altova.com) by InTraffic (ACC ICT BV.) -->
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-<!-- Copyright: Dit document is eigendom van Platform BISON onder de Stichting Connekt,-->
-<!--            en wordt gepubliceerd onder de Creative Commons Licentie by-nd/3.0/nl, -->
-<!--            zie http://creativecommons.org/licences/by-nd/3.0/nl                   -->
-<!-- Opmerking: XSD is gebaseerd op TMI8 koppelvlak 17 versie 8.3.0  -->
-<!-- Versie:   1.3 (oktober 2018)                                                         -->
-<!--                                                                                   -->
-<!-- Historie:                                                                         -->
-<!--          0.1: initiele versie                                                     -->
-<!--          0.2: op basis van concept (c)                                            -->
-<!--          0.3: op basis van concept (d)                                            -->
-<!--          0.4: op basis van concept (e) (including support for ADD)                -->
-<!--          1.0: op basis van v8.1.0.0, release                                      -->
-<!--          1.1: op basis van v8.2.0.0, concept(a)                                   -->
-<!--          1.2: op basis van v8.2.0.0, concept(c)                                   -->
-<!--          1.3: op basis van v8.3.0                                             -->
-<!--          1.4: op basis van v8.3.1                                             -->
-<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+<!-- Copyright: Dit document is eigendom van Platform BISON onder Samenwerkingsverband DOVA, -->
+<!--            en wordt gepubliceerd onder de Creative Commons Licentie by-nd/3.0/nl,       -->
+<!--            zie http://creativecommons.org/licences/by-nd/3.0/nl                         -->
+<!-- Opmerking: Dit XSD is gebaseerd op TMI8 koppelvlak 17                                   -->
+<!--                                                                                         -->
+<!-- Versie:   8.4.0a  (januari 2020)                                                        -->
+<!--                                                                                         -->
+<!-- Historie:                                                                               -->
+<!--          0.1: initiele versie                                                           -->
+<!--          0.2: op basis van concept (c)                                                  -->
+<!--          0.3: op basis van concept (d)                                                  -->
+<!--          0.4: op basis van concept (e) (including support for ADD)                      -->
+<!--          1.0: op basis van v8.1.0.0, release                                            -->
+<!--          1.1: op basis van v8.2.0.0, concept(a)                                         -->
+<!--          1.2: op basis van v8.2.0.0, concept(c)                                         -->
+<!--          1.3: op basis van v8.3.0                                                       -->
+<!--          1.4: op basis van v8.3.1                                                       -->
+<!--       8.4.0a: copyright aangepast                                                       -->
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tmi8="http://bison.connekt.nl/tmi8/kv17/msg" xmlns:tmi8c="http://bison.connekt.nl/tmi8/kv17/core" targetNamespace="http://bison.connekt.nl/tmi8/kv17/msg" elementFormDefault="qualified">
 	<xs:import namespace="http://bison.connekt.nl/tmi8/kv17/core" schemaLocation="kv17-core.xsd"/>
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -145,7 +146,7 @@
 		</xs:sequence>
 	</xs:complexType>
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-	<!-- CVL Info entities                                                          -->
+	<!-- CVL Info entities                                                                 -->
 	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	<xs:complexType name="CANCELType">
 		<xs:sequence>
