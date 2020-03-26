@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tmi8:VV_TM_PUSH xmlns:tmi8="http://bison.connekt.nl/tmi8/kv17/msg" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://bison.connekt.nl/tmi8/kv17/msg kv17.820-msg.xsd">
+<tmi8:VV_TM_PUSH xmlns:tmi8="http://bison.connekt.nl/tmi8/kv17/msg" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://bison.connekt.nl/tmi8/kv17/msg kv17.840-msg.xsd">
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Uitgewerkt voorbeeld op basis van koppelvlak 17 bijlage 3 --> 
+	<!-- "Voorbeeld scenario gebruik koppelvlak 17 in Utrecht"     -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 	<tmi8:SubscriberID>GOVI</tmi8:SubscriberID>
-	<tmi8:Version>8.2.0</tmi8:Version>
+	<tmi8:Version>8.4.0</tmi8:Version>
 	<tmi8:DossierName>KV17cvlinfo</tmi8:DossierName>
 	<tmi8:Timestamp>2009-01-12T08:15:25+01:00</tmi8:Timestamp>
 	<tmi8:KV17cvlinfo>
@@ -52,43 +56,43 @@
 			<tmi8:CHANGEPASSTIMES>
 				<tmi8:userstopcode>102</tmi8:userstopcode>
 				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-				<!-- merk op dat de aankomsttijd niet valide is; het is immers de beginhalte -->
+				<!-- merk op dat de aankomsttijd niet relevant is; het is immers de beginhalte -->
 				<tmi8:targetarrivaltime>00:00:00</tmi8:targetarrivaltime>
-				<tmi8:targetdeparturetime>08:40:00</tmi8:targetdeparturetime>
+				<tmi8:targetdeparturetime>08:45:00</tmi8:targetdeparturetime>
 				<tmi8:journeystoptype>FIRST</tmi8:journeystoptype>
 			</tmi8:CHANGEPASSTIMES>
 			<!-- Verander aankomst en vertrektijden voor passage 103/1 -->
 			<tmi8:CHANGEPASSTIMES>
 				<tmi8:userstopcode>103</tmi8:userstopcode>
 				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-				<tmi8:targetarrivaltime>08:45:00</tmi8:targetarrivaltime>
-				<tmi8:targetdeparturetime>08:45:00</tmi8:targetdeparturetime>
+				<tmi8:targetarrivaltime>08:50:00</tmi8:targetarrivaltime>
+				<tmi8:targetdeparturetime>08:50:00</tmi8:targetdeparturetime>
 				<tmi8:journeystoptype>INTERMEDIATE</tmi8:journeystoptype>
 			</tmi8:CHANGEPASSTIMES>
 			<!-- Verander aankomst en vertrektijden voor passage 104/1 -->
 			<tmi8:CHANGEPASSTIMES>
 				<tmi8:userstopcode>104</tmi8:userstopcode>
 				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-				<tmi8:targetarrivaltime>08:50:00</tmi8:targetarrivaltime>
-				<tmi8:targetdeparturetime>08:50:00</tmi8:targetdeparturetime>
+				<tmi8:targetarrivaltime>08:55:00</tmi8:targetarrivaltime>
+				<tmi8:targetdeparturetime>08:55:00</tmi8:targetdeparturetime>
 				<tmi8:journeystoptype>INTERMEDIATE</tmi8:journeystoptype>
 			</tmi8:CHANGEPASSTIMES>
 			<!-- Verander aankomst en vertrektijden voor passage 105/1 -->
 			<tmi8:CHANGEPASSTIMES>
 				<tmi8:userstopcode>105</tmi8:userstopcode>
 				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-				<tmi8:targetarrivaltime>08:55:00</tmi8:targetarrivaltime>
-				<tmi8:targetdeparturetime>09:00:00</tmi8:targetdeparturetime>
+				<tmi8:targetarrivaltime>09:00:00</tmi8:targetarrivaltime>
+				<tmi8:targetdeparturetime>09:05:00</tmi8:targetdeparturetime>
 				<tmi8:journeystoptype>INTERMEDIATE</tmi8:journeystoptype>
 			</tmi8:CHANGEPASSTIMES>
 			<!-- Verander aankomst en vertrektijden voor passage 106/1; tevens de nieuwe eindhalte -->
 			<tmi8:CHANGEPASSTIMES>
 				<tmi8:userstopcode>106</tmi8:userstopcode>
 				<tmi8:passagesequencenumber>1</tmi8:passagesequencenumber>
-				<tmi8:targetarrivaltime>09:05:00</tmi8:targetarrivaltime>
+				<tmi8:targetarrivaltime>09:10:00</tmi8:targetarrivaltime>
 				<tmi8:targetdeparturetime>00:00:00</tmi8:targetdeparturetime>
 				<tmi8:journeystoptype>LAST</tmi8:journeystoptype>
-				<!-- merk op dat hier de vertrektijd niet valide is; het is immers de eindhalte voor de rit -->
+				<!-- merk op dat hier de vertrektijd niet relevant is; het is immers de eindhalte voor de rit -->
 			</tmi8:CHANGEPASSTIMES>
 			<!-- alle haltes van de ingekorte rit hebben als nieuwe bestemming halte Utrecht Neude, bekend als code UtrNeude01 -->
 			<tmi8:CHANGEDESTINATION>
