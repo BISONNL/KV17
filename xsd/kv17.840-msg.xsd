@@ -18,6 +18,7 @@
 <!--          1.3: op basis van v8.3.0                                                       -->
 <!--          1.4: op basis van v8.3.1                                                       -->
 <!--       8.4.0a: copyright aangepast                                                       -->
+<!--        8.5.0: AlertCause, ServiceCondition, serviceRef toegevoegd                       -->
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tmi8="http://bison.connekt.nl/tmi8/kv17/msg" xmlns:tmi8c="http://bison.connekt.nl/tmi8/kv17/core" targetNamespace="http://bison.connekt.nl/tmi8/kv17/msg" elementFormDefault="qualified">
 	<xs:import namespace="http://bison.connekt.nl/tmi8/kv17/core" schemaLocation="kv17-core.xsd"/>
@@ -162,6 +163,9 @@
 			<xs:element name="advicecontent" type="tmi8:contentType" minOccurs="0"/>
 			<xs:element name="showcancelledtrip" type="tmi8:showcancelledtripType" default="true" minOccurs="0"/>
 			<xs:element name="autorecover" type="xs:boolean" default="false" minOccurs="0"/>
+			<xs:element name="alertcause" type="tmi8:AlertCauseEnumeration" default="unknown" minOccurs="0"/>
+			<xs:element name="servicecondition" type="tmi8:ServiceConditionEnumeration" default="unknown" minOccurs="0"/>
+			<xs:element name="serviceref" type="xs:string" default="false" minOccurs="0"/>
 			<xs:sequence minOccurs="0" maxOccurs="unbounded">
 				<xs:element ref="tmi8c:delimiter"/>
 				<xs:any namespace="##targetNamespace ##local" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
@@ -173,6 +177,9 @@
 			<xs:element name="userstopcode" type="tmi8:codeType"/>
 			<xs:element name="passagesequencenumber" type="tmi8:passagesequencenumberType"/>
 			<xs:element name="showcancelledtrip" type="tmi8:showcancelledtripType" default="true" minOccurs="0"/>
+			<xs:element name="alertcause" type="tmi8:AlertCauseEnumeration" default="unknown" minOccurs="0"/>
+			<xs:element name="servicecondition" type="tmi8:ServiceConditionEnumeration" default="unknown" minOccurs="0"/>
+			<xs:element name="serviceref" type="xs:string" default="false" minOccurs="0"/>
 			<xs:sequence minOccurs="0" maxOccurs="unbounded">
 				<xs:element ref="tmi8c:delimiter"/>
 				<xs:any namespace="##targetNamespace ##local" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
@@ -218,6 +225,7 @@
 			<xs:element name="userstopcode" type="tmi8:codeType"/>
 			<xs:element name="passagesequencenumber" type="tmi8:passagesequencenumberType"/>
 			<xs:element name="lagtime" type="tmi8:lagtimeType"/>
+			<xs:element name="alertcause" type="tmi8:AlertCauseEnumeration" default="unknown" minOccurs="0"/>
 			<xs:sequence minOccurs="0" maxOccurs="unbounded">
 				<xs:element ref="tmi8c:delimiter"/>
 				<xs:any namespace="##targetNamespace ##local" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
@@ -311,6 +319,1416 @@
 			<xs:enumeration value="SE"/>
 			<xs:enumeration value="NA"/>
 			<xs:enumeration value="PE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AlertCauseEnumeration">
+		<xs:annotation>
+			<xs:documentation>
+				Waardes voor TPEG Pts38 - AlertCause.
+				Alleen de waardes _0, _30, _43, _77, _83, _85, _98, _124, _125 en _127 hebben een beschreven betekenis in KV17.
+				Overige waardes zijn enkel opgenomen voor compatibiliteit met SIRI-SX.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="unknown">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_0, unknown</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="technicalProblem">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_30, technical problem</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="breakDown">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_43, break down</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="accident">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_77, accident</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="collision">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_83, collision</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="poorWeather">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_85, poor weather</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fallenTree">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_98, fallen tree</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="staffSickness">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_124, staff sickness</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="staffAbsence">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_125, staff absence</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="previousDisturbances">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_127, previous disturbances</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+
+			<!-- Overige waardes zijn enkel opgenomen voor compatibiliteit met SIRI-SX  -->
+
+			<xs:enumeration value="securityAlert">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_1, security alert</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="emergencyServicesCall">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_2, emergency services call</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="policeActivity">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_3, police activity</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="policeOrder">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_4, police order</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fire">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_5, fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="cableFire">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_6, cable fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="smokeDetectedOnVehicle">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_7, smoke detected on vehicle</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fireAtStation">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_8, fire at the station</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fireRun">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_9, fire run</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fireBrigadeOrder">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_10, fire brigade order</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="explosion">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_11, explosion</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="explosionHazard">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_12, explosion hazard</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="bombDisposal">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_13, bomb disposal</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="emergencyMedicalServices">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_14, emergency medical services</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="emergencyBrake">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_15, emergency brake</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="vandalism">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_16, vandalism</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="cableTheft">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_17, cable theft</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="signalPassedAtDanger">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_18, signal passed at danger</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="stationOverrun">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_19, station overrun</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="passengersBlockingDoors">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_20, passengers blocking doors</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="defectiveSecuritySystem">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_21, defective security system</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="overcrowded">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_22, overcrowded</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="borderControl">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_23, border control</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="unattendedBag">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_24, unattended bag</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="telephonedThreat">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_25, telephoned threat</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="suspectVehicle">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_26, suspect vehicle</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="evacuation">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_27, evacuation</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="terroristIncident">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_28, terrorist incident</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="publicDisturbance">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_29, public disturbance</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+
+			<xs:enumeration value="vehicleFailure">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_31, vehicle failure</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="serviceDisruption">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_32, service disruption</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="doorFailure">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_33, door failure</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="lightingFailure">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_34, lighting failure</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="pointsProblem">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_35, points problem</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="pointsFailure">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_36, points failure</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="signalProblem">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_37, signal problem</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="signalFailure">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_38, signal failure</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="overheadWireFailure">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_39, overhead wire failure</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="levelCrossingFailure">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_40, level crossing failure</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="trafficManagementSystemFailure">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_41, traffic management system failure</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="engineFailure">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_42, engine failure</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+
+			<xs:enumeration value="repairWork">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_44, repair work</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="constructionWork">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_45, construction work</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="maintenanceWork">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_46, maintenance work</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="powerProblem">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_47, power problem</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="trackCircuitProblem">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_48, track circuit</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="swingBridgeFailure">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_49, swing bridge failure</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="escalatorFailure">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_50, escalator failure</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="liftFailure">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_51, lift failure</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="gangwayProblem">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_52, gangway problem</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="defectiveVehicle">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_53, defective vehicle</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="brokenRail">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_54, broken rail</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="poorRailConditions">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_55, poor rail conditions</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="deicingWork">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_56, de-icing work</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="wheelProblem">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_57, wheel problem</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="routeBlockage">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_58, route blockage</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="congestion">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_59, congestion</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="heavyTraffic">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_60, heavy traffic</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="routeDiversion">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_61, route diversion</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="roadworks">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_62, roadworks</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="unscheduledConstructionWork">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_63, unscheduled construction work</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="levelCrossingIncident">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_64, level crossing incident</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="sewerageMaintenance">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_65, sewerageMaintenance </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="roadClosed">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_66, road closed</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="roadwayDamage">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_67, roadway damage</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="bridgeDamage">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_68, bridge damage</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="personOnTheLine">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_69, person on the line</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="objectOnTheLine">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_70, object on the line</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="vehicleOnTheLine">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_71, vehicle on the line</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="animalOnTheLine">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_72, animal on the line</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fallenTreeOnTheLine">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_73, fallen tree on the line</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="vegetation">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_74, vegetation</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="speedRestrictions">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_75, speed restrictions</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="precedingVehicle">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_76, preceding vehicle</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+
+			<xs:enumeration value="nearMiss">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_78, near miss</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="personHitByVehicle">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_79, person hit by vehicle</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="vehicleStruckObject">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_80, vehicle struck object</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="vehicleStruckAnimal">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_81, vehicle struck animal</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="derailment">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_82, derailment</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+
+			<xs:enumeration value="levelCrossingAccident">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_84, level crossing accident</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+
+			<xs:enumeration value="fog">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_86, fog</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="heavySnowFall">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_87, heavy snowfall</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="heavyRain">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_88, heavy rain</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="strongWinds">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_89, strong winds</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ice">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_90, ice</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="hail">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_91, hail</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="highTemperatures">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_92, high temperatures</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="flooding">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_93, flooding</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="lowWaterLevel">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_94, low water level</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="riskOfFlooding">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_95, risk of flooding</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="highWaterLevel">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_96, high water level</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fallenLeaves">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_97, fallen leaves</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+
+			<xs:enumeration value="landslide">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_99, landslide</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="riskOfLandslide">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_100, risk of landslide</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="driftingSnow">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_101, drifting snow</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="blizzardConditions">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_102, blizzard conditions</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="stormDamage">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_103, storm damage</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="lightningStrike">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_104, lightning strike</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="roughSea">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_105, rough sea</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="highTide">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_106, high tide</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="lowTide">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_107, low tide</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="iceDrift">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_108, ice drift</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="avalanches">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_109, avalanches</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="riskOfAvalanches">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_110, risk of avalanches</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="flashFloods">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_111, flash floods</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="mudslide">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_112, mudslide</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="rockfalls">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_113, rockfalls</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="subsidence">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_114, subsidence</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="earthquakeDamage">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_115, earthquake damage</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="grassFire">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_116, grass fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="wildlandFire">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_117, wildland fire</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="iceOnRailway">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_118, ice on railway</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="iceOnCarriages">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_119, ice on carriages</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="specialEvent">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_120, special event</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="procession">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_121, procession</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="demonstration">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_122, demonstration</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="industrialAction">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_123, industrial action</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+
+			<xs:enumeration value="operatorCeasedTrading">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_126, operator ceased trading</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+
+			<xs:enumeration value="vehicleBlockingTrack">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_128, vehicle blocking track</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="foreignDisturbances">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_129, foreign disturbances</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="awaitingShuttle">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_130, awaiting shuttle</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="changeInCarriages">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_131, change in carriages</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="trainCoupling">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_132, train coupling</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="boardingDelay">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_133, boarding delay</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="awaitingApproach">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_134, awaiting approach</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="overtaking">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_135, overtaking</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="provisionDelay">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_136, provision delay</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="miscellaneous">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_137, miscellaneous</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="undefinedAlertCause">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts38_255, undefined alert cause</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="incident">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_1, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="safetyViolation">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_1_2, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="trainDoor">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_1_5, DEPRECATED since SIRI 2.1 - replaced by Pts38_33, door failure</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="altercation">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_1_7, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="illVehicleOccupants">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_1_8, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="serviceFailure">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_1_12, DEPRECATED since SIRI 2.1 - replaced by Pts38_32, service disruption</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="bombExplosion">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_2, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fireBrigadeSafetyChecks">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_3_2, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="civilEmergency">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_3_6, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="airRaid">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_3_7, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="sabotage">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_3_8, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="bombAlert">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_3_9, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="attack">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_3_10, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="gunfireOnRoadway">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_3_13, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="securityIncident">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_3_16, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="linesideFire">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_4_1, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="passengerAction">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_5_1, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="staffAssault">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_5_2, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="railwayCrime">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_5_3, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="assault">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_5_4, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="theft">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_5_5, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fatality">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_6_1, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="personUnderTrain">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_6_2, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="personHitByTrain">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_6_3, DEPRECATED since SIRI 2.1 - replaced by Pts38_79, person hit by vehicle</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="personIllOnVehicle">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_6_4, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="emergencyServices">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_6_5, DEPRECATED since SIRI 2.1 - replaced by Pts38_14, emergency medical services</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="insufficientDemand">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_8, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="leaderBoardFailure">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_10, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="serviceIndicatorFailure">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_11, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="operatorSuspended">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_14, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="problemsAtBorderPost">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_15_1, DEPRECATED since SIRI 2.1 - replaced by Pts38_23, border control</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="problemsAtCustomsPost">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_15_2, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="levelCrossingIncident">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_18_1, DEPRECATED since SIRI 2.1 - replaced by Pts38_64, level crossing blocked</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="trainStruckAnimal">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_19_3, DEPRECATED since SIRI 2.1 - replaced by Pts38_81, vehicle struck animal</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="trainStruckObject">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_19_4, DEPRECATED since SIRI 2.1 - replaced by Pts38_80, vehicle struck object</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="roadMaintenance">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_23_2, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="asphalting">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_23_3, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="paving">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_23_4, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="march">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_24_1, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="filterBlockade">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_24_5, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="sightseersObstructingAccess">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_24_6, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="holiday">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_24_7, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="bridgeStrike">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_25, DEPRECATED since SIRI 2.1 - replaced by Pts38_68, bridge damage</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="viaductFailure">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_25_1, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="overheadObstruction">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_26, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="undefinedProblem">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_255, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="logisticProblems">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_255_1, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="problemsOnLocalRoad">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_255_2, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="undefinedProblem">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti19_255, DEPRECATED since SIRI 2.1 - replaced by Pts38_255, undefined alert cause</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="staffInjury">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti20_1_1, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="contractorStaffInjury">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti20_1_2, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="staffInWrongPlace">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti20_3, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="staffShortage">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti20_4, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="unofficialIndustrialAction">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti20_5_1, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="workToRule">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti20_6, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="undefinedPersonnelProblem">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti20_255, DEPRECATED since SIRI 2.1 - replaced by Pts38_255, undefined alert cause</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="trainWarningSystemProblem">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti21_3_1, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="signalAndSwitchFailure">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti21_4_1, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="tractionFailure">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti21_6_1, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="defectiveTrain">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti21_6_2, DEPRECATED since SIRI 2.1 - replaced by Pts38_53, defective vehicle</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="wheelImpactLoad">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti21_8_3, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="lackOfOperationalStock">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti21_8_4, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="defectiveFireAlarmEquipment">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti21_8_5, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="defectivePlatformEdgeDoors">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti21_8_6, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="defectiveCctv">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti21_8_7, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="defectivePublicAnnouncementSystem">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti21_8_8, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ticketingSystemNotAvailable">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti21_8_9, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="emergencyEngineeringWork">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti21_11_1, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="lateFinishToEngineeringWork">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti21_11_2, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fuelProblem">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti21_13, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="closedForMaintenance">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti21_18, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fuelShortage">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti21_19, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="slipperyTrack">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti21_21_1, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="luggageCarouselProblem">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti21_22, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="undefinedEquipmentProblem">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti21_255, DEPRECATED since SIRI 2.1 - replaced by Pts38_255, undefined alert cause</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="stormConditions">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti22_5_1, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="tidalRestrictions">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti22_6, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="slipperiness">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti22_9_1, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="glazedFrost">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti22_9_3, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="frozen">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti22_10, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="sleet">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti22_11_1, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="waterlogged">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti22_14, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="sewerOverflow">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti22_255_2, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="undefinedEnvironmentalProblem">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti22_255, DEPRECATED since SIRI 2.1 - replaced by Pts38_255, undefined alert cause</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<!-- Values added for compatiblity -->
+			<xs:enumeration value="fireAtTheStation">
+				<xs:annotation>
+					<xs:documentation>See also TPEG Pts38_8 value 'fireAtStation'.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="breakdown">
+				<xs:annotation>
+					<xs:documentation>See also TPEG Pts38_43 value 'breakDown'.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="levelCrossingBlocked">
+				<xs:annotation>
+					<xs:documentation>See also TPEG Pts38_64 value 'levelCrossingIncident'.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="heavySnowfall">
+				<xs:annotation>
+					<xs:documentation>See also TPEG Pts38_87 value 'heavySnowFall'.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="waitingForTransferPassengers">
+				<xs:annotation>
+					<xs:documentation>See also TPEG Pts38_130 value 'awaitingShuttle'.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="awaitingOncomingVehicle">
+				<xs:annotation>
+					<xs:documentation>See also TPEG Pts38_134 value 'awaitingApproach'.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ServiceConditionEnumeration">
+		<xs:annotation>
+			<xs:documentation>Waardes voor TPEG Pts43 ServiceCondition</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="unknown">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_0, unknown</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="delay">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_1, delay</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="minorDelays">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_2, minor delays</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="majorDelays">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_3, major delays</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="operationTimeExtension">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_4, operation time extension</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="onTime">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_5, on time</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="disturbanceRectified">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_6, disturbance rectified</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="changeOfPlatform">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_7, change of platform</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="lineCancellation">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_8, line cancellation</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="tripCancellation">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_9, trip cancellation</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="boarding">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_10, boarding</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="goToGate">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_11, go to gate</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="stopCancelled">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_12, stop cancelled</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="stopMoved">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_13, stop moved</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="stopOnDemand">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_14, stop on demand</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="additionalStop">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_15, additional stop</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="substitutedStop">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_16, substituted stop</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="diverted">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_17, diverted</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="disruption">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_18, disruption</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="limitedOperation">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_19, limited operation</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="discontinuedOperation">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_20, discontinued operation</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="irregularTraffic">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_21, irregular traffic</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="wagonOrderChanged">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_22, wagon order changed</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="trainShortened">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_23, train shortened</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="additionalRide">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_24, additional ride</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="replacementRide">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_25, replacement ride</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="temporarilyNonStopping">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_26, temporarily non-stopping</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="temporaryStopplace">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_27, temporary stopplace</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="undefinedStatus">
+				<xs:annotation>
+					<xs:documentation>TPEG Pts43_255, undefined status</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="altered">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti13_1, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="cancelled">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti13_2, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="delayed">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti13_3, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="noService">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti13_5, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="disrupted">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti13_6, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="additionalService">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti13_7, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="specialService">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti13_8, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="normalService">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti13_10, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="intermittentService">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti13_11, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="shortFormedService">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti13_12, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="fullLengthService">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti13_13, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="extendedService">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti13_14, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="splittingTrain">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti13_15, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="replacementTransport">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti13_16, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="arrivesEarly">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti13_17, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="shuttleService">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti13_18, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="replacementService">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti13_19, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="undefinedServiceInformation">
+				<xs:annotation>
+					<xs:documentation>TPEG Pti13_255, DEPRECATED since SIRI 2.1</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="ResponseErrorType">
